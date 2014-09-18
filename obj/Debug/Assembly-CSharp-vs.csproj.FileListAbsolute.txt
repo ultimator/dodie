@@ -1,0 +1,11 @@
+E:\Mac\2dgame\Temp\bin\Debug\Assembly-CSharp.dll
+E:\Mac\2dgame\Temp\bin\Debug\Assembly-CSharp.pdb
+E:\Mac\2dgame\Temp\bin\Debug\UnityEditor.dll
+E:\Mac\2dgame\Temp\bin\Debug\UnityEngine.dll
+E:\Mac\2dgame\Temp\bin\Debug\Mono.Cecil.dll
+E:\Mac\2dgame\Temp\bin\Debug\nunit.framework.dll
+E:\Mac\2dgame\Temp\bin\Debug\Unity.DataContract.dll
+E:\Mac\2dgame\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+E:\Mac\2dgame\obj\Debug\ResolveAssemblyReference.cache
+E:\Mac\2dgame\obj\Debug\Assembly-CSharp.dll
+E:\Mac\2dgame\obj\Debug\Assembly-CSharp.pdb
