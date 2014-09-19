@@ -17,6 +17,7 @@ public class Sphere : MonoBehaviour {
     private bool a = false;
     private Rock rock;
 	private Vector2 touchposition;
+	private float[,] farr;
     
 
 	//private Transform m_transform;
@@ -44,9 +45,11 @@ public class Sphere : MonoBehaviour {
 
 	void OnMouseEnter()
 	{
+
 		if(Input.GetMouseButton(0))
 		{
 			isOver = true;
+			Debug.Log("enter");
 		
 		}
 		else
@@ -80,7 +83,7 @@ public class Sphere : MonoBehaviour {
 	{
 		if(isOver)
 		{
-			if(Input.GetMouseButtonUp(0))
+			if(Input.GetMouseButton(0))
 			{
 				this.mousepos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z));
 			}
@@ -98,10 +101,11 @@ public class Sphere : MonoBehaviour {
 				//touchposition=Input.GetTouch(0).deltaPosition;  //[color=Red]获取手指touch最后一帧移动的xy轴距离[/color]
 				//mTransform.Translate(touchposition.x * Time.deltaTime,touchposition.y * Time.deltaTime,0);//[color=Red]移动这个距离[/color]
 
-				this.transform.Translate(mousepos);
+				//this.transform.Translate(mousepos);
 
 				//this.transform.position = mousepos;
-				//this.transform.tra
+				mTransform.position = mousepos;
+				//farr
 				relativePos = lastPos - mousepos;
 
 				float f= 0;
