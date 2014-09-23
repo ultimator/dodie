@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour
             anim.AnimationCompleted = HitCompleteDelegate;
 			
 			this.life = life - rock.power;
-            Debug.Log(life.ToString());
+            //Debug.Log(life.ToString());
 			if(life <= 0)
 			{
                 anim.Play("EnemyDead");

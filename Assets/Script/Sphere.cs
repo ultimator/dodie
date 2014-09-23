@@ -49,7 +49,7 @@ public class Sphere : MonoBehaviour {
 		if(Input.GetMouseButton(0))
 		{
 			isOver = true;
-			Debug.Log("enter");
+			//Debug.Log("enter");
 		
 		}
 		else
@@ -66,7 +66,7 @@ public class Sphere : MonoBehaviour {
         rock = other.GetComponent<Rock>();
 		if(other.tag == "weapon")
 		{
-			Debug.Log (relativePos);
+			//Debug.Log (relativePos);
 			//Quaternion q;
 			//q.SetFromToRotation;
 			tempObj = other.gameObject;
@@ -76,7 +76,7 @@ public class Sphere : MonoBehaviour {
 
 			//other.transform.rotation= transform.rotation;
 		}
-		Debug.Log(other.tag);
+		//Debug.Log(other.tag);
 	}
 	// Update is called once per frame
 	void Update () 
@@ -115,14 +115,22 @@ public class Sphere : MonoBehaviour {
                     {
                         if (rock.State == Rock.RockStateEnum.act1)
                         {
-                            Debug.Log(a.ToString());
+							//Input.GetTouch(0).phase == TouchPhase.Began || 
+							if(lastPos == mousepos || Input.GetTouch(0).phase == TouchPhase.Began)
+							{
+								Debug.Log(lastPos);
+								mousepos = GameObject.Find("SpriteChest5").transform.position;
+								relativePos = lastPos - mousepos;
+							}
+							//rock.transform.position = mTransform.position;
+                            //Debug.Log(a.ToString());
                             //relativePos = chest.transform.position - mousepos;
                             //f = Vector3.Angle(lastPos,new Vector3(mousepos.x,mousepos.y,mousepos.z));
                             f = Vector3.Angle(relativePos, Vector3.right);
                             //f = 180 + f;
                             //f = Vector3.Angle(Vector3.zero,mousepos);
                             //Debug.Log(relativePos);
-                            Debug.Log(f);
+                            //Debug.Log(f);
                             if (lastPos.y < mousepos.y)
                             {
                                 f = -f;
@@ -132,7 +140,9 @@ public class Sphere : MonoBehaviour {
                             tempObj.transform.rotation = Quaternion.Euler(f, 270f, 0);
 
 
-                            rock.State = Rock.RockStateEnum.act2;
+								rock.State = Rock.RockStateEnum.act2;
+
+                            
                         }
                     }
 				}

@@ -23,7 +23,7 @@ public class Parabola : MonoBehaviour
         {
             move = false;
         }
-        Debug.Log(other.tag);
+        //Debug.Log(other.tag);
     }
 
     IEnumerator Shoot()

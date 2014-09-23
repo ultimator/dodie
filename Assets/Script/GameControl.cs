@@ -32,7 +32,7 @@ public class GameControl : MonoBehaviour
     {
         int i;
         i = Random.Range(1, 6);
-        Debug.Log(i.ToString());
+        //Debug.Log(i.ToString());
         Instantiate(enemy, new Vector3(5f, 0.6f * i, 0f), Quaternion.identity);
         Invoke("SendEnemy", 8);
  
