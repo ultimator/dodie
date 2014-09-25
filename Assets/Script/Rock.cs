@@ -11,8 +11,9 @@ public class Rock : MonoBehaviour
 	private float temp;
     public enum RockStateEnum
     {
-        act1,
-        act2
+        act1,//抛物线
+        act2,//直线
+		act3//停止
     }
     private RockStateEnum _state;
 

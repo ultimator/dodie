@@ -8,28 +8,32 @@ public class Parabola : MonoBehaviour
     private float distanceToTarget;
     private bool move = true;
     private bool status = true;
+	public bool active = true;
 
     void Start()
     {
         string targetName = "SpriteChest" + Random.Range(1,6).ToString();
         target = GameObject.Find(targetName);
         distanceToTarget = Vector3.Distance(this.transform.position, target.transform.position);
+		//rock = gameObject.GetComponent<Rock>();
         StartCoroutine(Shoot());
     }
     void OnTriggerEnter(Collider other)
     {
-        //Rock rock = other.GetComponent<Rock>();
-        if (other.tag == "pointer" || other.tag == "chest")
-        {
-            move = false;
-        }
-        //Debug.Log(other.tag);
+        
+//		Rock rock = gameObject.GetComponent<Rock>();
+//        if (other.tag == "pointer" || other.tag == "chest")
+//        {
+//            move = false;
+//
+//        }
+        
     }
 
-    IEnumerator Shoot()
+    IEnumerator Shoot()//如果rock的状态是act1则保持抛物线运动
     {
 
-        while (move)
+		while (active)
         {
             Vector3 targetPos = target.transform.position;
             this.transform.LookAt(targetPos);

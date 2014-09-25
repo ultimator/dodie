@@ -15,7 +15,22 @@ public class GameControl : MonoBehaviour
     public Enemy enemy;
     public TextMesh text;
     
+	void Awake() 
+	{
+		Debug.Log (Application.platform);
+		
+		#if UNITY_ANDROID
+		Debug.Log("this is android");
+		#endif
+		
+		#if UNITY_IPHONE
+		Debug.Log("this is ios");
+		#endif
 
+		#if UNITY_STANDALONE_WIN
+		Debug.Log("this is win");
+		#endif        
+	}
 
 	void Start () 
 	{
@@ -40,68 +55,10 @@ public class GameControl : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-//        int i = 0;
-//        //Debug.Log(Input.touchCount.ToString());
-//        while (i < Input.touchCount)
-//        {
-//            if (Input.GetTouch(i).phase == TouchPhase.Began)
-//            {
-//                //Instantiate(box, Input.GetTouch(i).deltaPosition, Quaternion.identity);
-//                text.text = i.ToString() + "#" + Input.GetTouch(i).deltaPosition.ToString() + "#" + Input.touchCount.ToString();
-//				i = i + 1;
-//            }
-//        }
-
-
-		        int i = 0;
-		        //Debug.Log(Input.touchCount.ToString());
-		        //while (i < Input.touchCount)
-		        //{
-//		            if (Input.GetTouch(i).phase == TouchPhase.Began)
-//		            {
-//		                //Instantiate(box, Input.GetTouch(i).deltaPosition, Quaternion.identity);
-//		                //text.text = i.ToString() + "#" + "Began" + "#" + Input.touchCount.ToString();
-//			//text.text = "Began" + "#" + Input.touchCount.ToString()+ "#" + Camera.main.ScreenPointToRay(Input.GetTouch(i).position).ToString();/////Input.GetTouch(i).deltaPosition.ToString();
-//			//i = i + 1;
-//			text.text = "Began" + "#" + Input.touchCount.ToString()+ "#" + Input.GetTouch(i).position.ToString();
-//			Instantiate(this.pointer, mousepos, Quaternion.identity);
-//		            }
-//		if (Input.GetTouch(i).phase == TouchPhase.Moved)
-//		{
-//			//text.text = "Moved" + "#" + Input.touchCount.ToString() + "#" + Input.GetTouch(i).deltaPosition.ToString();
-//			text.text = "Moved" + "#" + Input.touchCount.ToString() + "#" + Input.GetTouch(i).deltaPosition.ToString();
-//
-//		}
-//		if (Input.GetTouch(i).phase == TouchPhase.Ended)
-//		{
-//			text.text = "Ended" + "#" + Input.touchCount.ToString()+ "#" + Input.GetTouch(i).deltaPosition.ToString();
-//		}
-		        //}
-
-
-
-//		int k = 0;
-//		if (Input.GetMouseButton(0))
-//		{
-//			k = 5;
-//		}
-//			
-//			int i = 0;
-//		        //Debug.Log(Input.touchCount.ToString());
-//
-//		while (i < k)
-//		  {
-//			if (Input.GetMouseButton(0) )
-//			{
-//
-//		                //Instantiate(box, Input.GetTouch(i).deltaPosition, Quaternion.identity);
-//		                text.text = i.ToString() + "#" + "ddd" + "#" + k.ToString();
-//						++i;
-//		    }
-//		  }
-
-	
-			if ( Input.touchCount > 0 && Input.GetTouch(i).phase == TouchPhase.Began)
+		#if UNITY_IPHONE
+		int i = 0;
+		    
+		if ( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 		{
 			this.mousepos = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
 			//this.mousepos = Input.GetTouch(i).position;
@@ -115,11 +72,15 @@ public class GameControl : MonoBehaviour
 				 isClike = true;
 			}
 		}
+
 		//if (Input.GetMouseButtonUp(0))
-		if (Input.touchCount > 0 && Input.GetTouch(i).phase == TouchPhase.Ended)
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
 		{
 		    isClike = false;
 		}
+		#endif
+
+		#if UNITY_STANDALONE_WIN
 		////////////////////////////////////////////////mouse//////////////////////////////////////
         if (Input.GetMouseButton(0))
         {
@@ -139,9 +100,9 @@ public class GameControl : MonoBehaviour
             isClike = false;
         }
 		////////////////////////////////////////////////mouse//////////////////////////////////////
-        
-			
-
-	
+		#endif
+		
+		
+		
 	}
 }
