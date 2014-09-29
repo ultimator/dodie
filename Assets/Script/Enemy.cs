@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
 	private float rateTemp;
 	public GameObject weapon;
 	private float life = 10;
-    public enum EnemyStateEnum
+    public enum EnemyStateEnum//
     {
         Walking,
         ThrowWeapon,

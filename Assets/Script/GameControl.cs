@@ -30,7 +30,7 @@ public class GameControl : MonoBehaviour
 		#if UNITY_STANDALONE_WIN
 		Debug.Log("this is win");
 		#endif        
-		//dill/dill
+		//dill//dill//dill
 	}
 
 	void Start () 
