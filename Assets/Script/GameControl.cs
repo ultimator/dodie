@@ -14,6 +14,10 @@ public class GameControl : MonoBehaviour
 	private float rate = 5;
     public Enemy enemy;
     public TextMesh text;
+
+	Ray ray;
+	RaycastHit hit;
+	private Rock rockObj;
     
 	void Awake() 
 	{
@@ -83,6 +87,41 @@ public class GameControl : MonoBehaviour
 
 		#if UNITY_STANDALONE_WIN
 		////////////////////////////////////////////////mouse//////////////////////////////////////
+//		if(Input.GetMouseButtonDown(0))
+//		{
+//			rock.collider.bounds.
+//			Debug.Log("down");
+//		}
+		if (Input.GetMouseButtonDown(0))
+		{
+			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			if (Physics.Raycast(ray, out hit))
+			{
+				GameObject obj;
+				obj = hit.collider.gameObject;
+				rockObj = obj.GetComponent<Rock>(); //取不到值？？？？？
+				Debug.Log(obj);
+				Debug.Log(hit.collider.gameObject.name);
+				Debug.Log(rockObj);
+				if(rockObj != null)
+				{
+					rockObj.State = Rock.RockStateEnum.act4;
+					Debug.Log(hit.collider.gameObject.name);
+				}
+			}
+//			Ray ray;
+//			RaycastHit hit;
+//
+//				if (Input.GetMouseButton(0))
+//				{
+//					ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//					if (Physics.Raycast(ray, out hit))
+//						Debug.Log(hit.collider.gameObject.name);
+//				}
+
+
+		}
+
         if (Input.GetMouseButton(0))
         {
             this.mousepos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z));

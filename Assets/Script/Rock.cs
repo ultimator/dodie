@@ -13,7 +13,8 @@ public class Rock : MonoBehaviour
     {
         act1,//抛物线
         act2,//直线
-		act3//停止
+		act3,//停止
+		act4 //收集
     }
     private RockStateEnum _state;
 

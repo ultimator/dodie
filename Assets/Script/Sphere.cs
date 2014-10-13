@@ -74,12 +74,18 @@ public class Sphere : MonoBehaviour {
 		para = other.GetComponent<Parabola>();
 		if(other.tag == "weapon")
 		{
+
 			//Debug.Log (relativePos);
 			//Quaternion q;
 			//q.SetFromToRotation;
 			tempObj = other.gameObject;
-			isMeet = true;
-            rock.enWeapon = 0;
+
+
+				//Debug.Log("else");
+				isMeet = true;
+				rock.enWeapon = 0;
+
+
             
 
 			//other.transform.rotation= transform.rotation;
@@ -89,6 +95,8 @@ public class Sphere : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+
+
 		if(isOver)
 		{
 			#if UNITY_STANDALONE_WIN
@@ -136,7 +144,10 @@ public class Sphere : MonoBehaviour {
 
                             tempObj.transform.rotation = Quaternion.Euler(f, 270f, 0);
 							para.active = false;
-							rock.State = Rock.RockStateEnum.act2;
+							//if(Input.touchCount > 0 && Input.GetTouch(0).phase != TouchPhase.Began)
+							//{
+								rock.State = Rock.RockStateEnum.act2;
+							//}
 
                         }
                     }
