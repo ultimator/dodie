@@ -18,6 +18,7 @@ public class GameControl : MonoBehaviour
 	Ray ray;
 	RaycastHit hit;
 	private Rock rockObj;
+	private Parabola para;
     
 	void Awake() 
 	{
@@ -98,14 +99,22 @@ public class GameControl : MonoBehaviour
 			if (Physics.Raycast(ray, out hit))
 			{
 				GameObject obj;
-				obj = hit.collider.gameObject;
+//				obj = hit.collider.gameObject.transform.parent.gameObject;
+//				if(obj == null)
+//				{
+					obj = hit.collider.gameObject;
+				//}
+
 				rockObj = obj.GetComponent<Rock>(); //取不到值？？？？？
-				Debug.Log(obj);
+				para = obj.GetComponent<Parabola>();
+				Debug.Log(obj.name);
 				Debug.Log(hit.collider.gameObject.name);
 				Debug.Log(rockObj);
+				//if(rockObj != null)
 				if(rockObj != null)
 				{
 					rockObj.State = Rock.RockStateEnum.act4;
+					//para.active = false;
 					Debug.Log(hit.collider.gameObject.name);
 				}
 			}

@@ -37,6 +37,16 @@ public class Rock : MonoBehaviour
         {
             mTransform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
         }
+		if(_state == RockStateEnum.act4)
+		{
+			Parabola para = gameObject.GetComponent<Parabola>();
+			para.active = false;
+			Vector3 chesPos = GameObject.Find("SpriteChest5").transform.position;
+			float step = speed * Time.deltaTime; 
+			
+			mTransform.position = Vector3.MoveTowards(mTransform.position,chesPos, step); 
+
+		}
 			
 
 
