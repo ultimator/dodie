@@ -21,6 +21,7 @@ public class TiledSprite : MonoBehaviour {
 		tSprite.color = Color.yellow;
 		//test
 		//ok
+		//aaa
 		
 	}
 	void OnMouseExit()
