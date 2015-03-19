@@ -15,10 +15,13 @@ public class GameControl : MonoBehaviour
     public Enemy enemy;
     public TextMesh text;
 
+	public tk2dTileMap tileMap;
+
 	Ray ray;
 	RaycastHit hit;
 	private Rock rockObj;
 	private Parabola para;
+	private tk2dTiledSprite tSprite;
     
 	void Awake() 
 	{
@@ -103,6 +106,7 @@ public class GameControl : MonoBehaviour
 //				if(obj == null)
 //				{
 					obj = hit.collider.gameObject;
+				Debug.Log(tileMap.data.tileSize);
 				//}
 
 				rockObj = obj.GetComponent<Rock>(); //取不到值？？？？？
@@ -111,7 +115,14 @@ public class GameControl : MonoBehaviour
 				Debug.Log(hit.collider.gameObject.name);
 				Debug.Log(rockObj);
 				//if(rockObj != null)
-				if(rockObj != null)
+				if(obj.tag == "ground")
+				{
+					tSprite = obj.GetComponent<tk2dTiledSprite>();
+					tSprite.color = Color.yellow;
+
+				}
+				//obj.gameObject.
+				if(rockObj != null )
 				{
 					rockObj.State = Rock.RockStateEnum.act4;
 					//para.active = false;
