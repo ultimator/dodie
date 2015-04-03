@@ -50,6 +50,7 @@
      <Compile Include="Assets\Script\Ball.cs" />
      <Compile Include="Assets\Script\Box.cs" />
      <Compile Include="Assets\Script\Control.cs" />
+     <Compile Include="Assets\Script\Egg.cs" />
      <Compile Include="Assets\Script\Enemy.cs" />
      <Compile Include="Assets\Script\EnemySpawner.cs" />
      <Compile Include="Assets\Script\GameControl.cs" />
