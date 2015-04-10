@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameControl : MonoBehaviour 
 {
-
+	public static GameControl instance = null;
 	// Use this for initialization
 	public GameObject box;
 	public GameObject pointer;
@@ -12,7 +12,7 @@ public class GameControl : MonoBehaviour
 	public GameObject obj;
 	public GameObject rock;
 	private float rate = 5;
-    public Enemy enemy;
+    
     public TextMesh text;
 
 	public tk2dTileMap tileMap;
@@ -22,9 +22,17 @@ public class GameControl : MonoBehaviour
 	private Rock rockObj;
 	private Parabola para;
 	private tk2dTiledSprite tSprite;
-    
+
+	//private SpawnData spawnData;
+	//private ArrayList enemylist;
+	private int enemywave;
 	void Awake() 
 	{
+
+		if(instance == null)
+		{
+			instance = this;
+		}
 		Debug.Log (Application.platform);
 		
 		#if UNITY_ANDROID
@@ -43,30 +51,25 @@ public class GameControl : MonoBehaviour
 
 	void Start () 
 	{
+
 		isClike = false;
         //for (int i = 0; i < 5; i++)
         //{
         //    Instantiate(enemy, new Vector3(5f, 0.8f * i, 0f), Quaternion.identity);
         //}
-        Invoke("SendEnemy", 8);
         
+		enemywave = 1;
+		//EnemySpawner.instance.SendEnemy();
+
+		//eSpawner = gameObject.GetComponent<EnemySpawner>();
+
+		//eSpawner.m_enemyList[1]
+
+		//Debug.Log(eSpawner.m_enemyList[1]);
+
         
 	}
-    void SendEnemy()
-    {
-        int i;
-        i = Random.Range(1, 6);
-        //Debug.Log(i.ToString());
-		string spawnName;
-		spawnName = "EnemySpawner" + i.ToString();
-		GameObject obj = GameObject.Find(spawnName);
-		Debug.Log (obj);
-
-       //Instantiate(enemy, new Vector3(5f, 0.6f * i, 0f), Quaternion.identity);
-		Instantiate(enemy, obj.transform.position, Quaternion.identity);
-        Invoke("SendEnemy", 8);
- 
-    }
+    
 	// Update is called once per frame
 	void Update () 
 	{
@@ -171,4 +174,5 @@ public class GameControl : MonoBehaviour
 		
 		
 	}
+
 }

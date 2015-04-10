@@ -16,7 +16,7 @@ public class Ball : MonoBehaviour {
 		//{
 		//    _state = RockStateEnum.act2;
 		//}
-		if(other.tag == "weapon" )
+		if(other.tag == "weapon" || other.tag == "enemy" )
 		{
 			overText.text = "Game Over";
 			overText.fontSize = 64;
