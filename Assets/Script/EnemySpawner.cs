@@ -55,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
 		//Invoke("SendEnemy", 8);
 
 		SpawnData sData = (SpawnData)m_enemyList[m_enemyList.Count - 1];
-		Debug.Log (sData.wave);
+		//Debug.Log (sData.wave);
 		GameControl.instance.EnemyTotalWave = sData.wave;
 
 	
@@ -88,7 +88,7 @@ public class EnemySpawner : MonoBehaviour
 			data.enemyName = enemyname;
 			data.level = int.Parse(level);
 			data.wait = float.Parse(wait);
-			//Debug.Log(data.enemyName);
+			Debug.Log(data.enemyName);
 			m_enemyList.Add(data);
 
 		}
@@ -133,7 +133,7 @@ public class EnemySpawner : MonoBehaviour
 
 		//不满足延迟时间则返回
 
-		//Debug.Log (m_timer);
+		Debug.Log (m_timer);
 		m_timer = m_timer - Time.deltaTime ;
 		//m_timer = m_timer - 0.02f;
 		if(m_timer > 0)
