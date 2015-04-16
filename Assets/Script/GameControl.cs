@@ -14,9 +14,14 @@ public class GameControl : MonoBehaviour
 	private float rate = 5;
     
     public TextMesh text;
+	private int enemyLive;
+	private int enemyWave;
+	private int enemyTotalWave;
+	public TextMesh textLive;
+	public TextMesh textWave;
+	public TextMesh textTotalWave;
 
 	public tk2dTileMap tileMap;
-
 	Ray ray;
 	RaycastHit hit;
 	private Rock rockObj;
@@ -26,6 +31,37 @@ public class GameControl : MonoBehaviour
 	//private SpawnData spawnData;
 	//private ArrayList enemylist;
 	private int enemywave;
+
+	public int EnemyLive {
+		get {
+			return enemyLive;
+		}
+		set {
+			enemyLive = value;
+			//textLive.text = "还剩" + enemyLive.ToString() + "个敌人";
+			textLive.text = "Live:" + enemyLive.ToString();
+			//gameObject.find("textLive");
+		}
+	}
+	public int EnemyWave {
+		get {
+			return enemyWave;
+		}
+		set {
+			enemyWave = value;
+			textWave.text = "Wave:" + enemyWave.ToString();
+		}
+	}
+	
+	public int EnemyTotalWave {
+		get {
+			return enemyTotalWave;
+		}
+		set {
+			enemyTotalWave = value;
+			textTotalWave.text = "TotalWave:" + enemyTotalWave.ToString();
+		}
+	}
 	void Awake() 
 	{
 
@@ -59,6 +95,7 @@ public class GameControl : MonoBehaviour
         //}
         
 		enemywave = 1;
+
 		//EnemySpawner.instance.SendEnemy();
 
 		//eSpawner = gameObject.GetComponent<EnemySpawner>();
@@ -171,8 +208,9 @@ public class GameControl : MonoBehaviour
 		////////////////////////////////////////////////mouse//////////////////////////////////////
 		#endif
 		
-		
+
 		
 	}
+
 
 }

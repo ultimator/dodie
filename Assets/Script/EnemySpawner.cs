@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
 	//保存所有的从XML读取的数据 
 	private ArrayList m_enemyList;
 	//距离下一个敌人出场的时间
-	float m_timer = 0;
+	private float m_timer = 0;
 	//出场敌人的序列号
 	int m_index = 0;
 	//当前波的敌人数量，只有销毁当前波内的所有敌人，才能进入下一波。
@@ -23,8 +23,10 @@ public class EnemySpawner : MonoBehaviour
 	private SpawnData enemyData;
 
 	//敌人
-	private Enemy enemyObj;
-	private EnemyTable[] m_enemies;
+	private GameObject  enemyObj;
+	public EnemyTable[] m_enemies;
+	float tep;
+	string eneName;
 	//public PathNode m_startNode;
 	//存储敌人出场顺序的xml
 	void Awake()
@@ -33,6 +35,7 @@ public class EnemySpawner : MonoBehaviour
 		{
 			instance = this;
 		}
+		ReadXML();
 	}
 
 	//public PathNode m_startNode;
@@ -41,13 +44,21 @@ public class EnemySpawner : MonoBehaviour
 		// Use this for initialization
 	void Start ()
 	{
+		//enemyObj = Instantiate(Resources.Load("Enemy", typeof(GameObject))) as GameObject;
+		//Debug.Log (enemyObj);
 		//m_enemyList = new ArrayList();
 		//TextAsset xmlData =(TextAsset)Resources.Load("EnemyData",System.Xml);
 
 		//读取XML中敌人数据
-		ReadXML();
+		//ReadXML();
 		//生成敌人
 		//Invoke("SendEnemy", 8);
+
+		SpawnData sData = (SpawnData)m_enemyList[m_enemyList.Count - 1];
+		Debug.Log (sData.wave);
+		GameControl.instance.EnemyTotalWave = sData.wave;
+
+	
 	
 	}
 	void ReadXML()
@@ -67,7 +78,7 @@ public class EnemySpawner : MonoBehaviour
 		for (int i = 0; i < list.Count; i++) 
 		{
 			string wave = node.GetValue("ROOT>0>table>" + i + ">@wave");
-			Debug.Log(wave);
+			//Debug.Log(wave);
 			string enemyname = node.GetValue("ROOT>0>table>" + i + ">@enemyname");
 			string level = node.GetValue("ROOT>0>table>" + i + ">@level");
 			string wait = node.GetValue("ROOT>0>table>" + i + ">@wait");
@@ -77,7 +88,7 @@ public class EnemySpawner : MonoBehaviour
 			data.enemyName = enemyname;
 			data.level = int.Parse(level);
 			data.wait = float.Parse(wait);
-			Debug.Log(data.enemyName);
+			//Debug.Log(data.enemyName);
 			m_enemyList.Add(data);
 
 		}
@@ -88,32 +99,64 @@ public class EnemySpawner : MonoBehaviour
 		// Update is called once per frame
 	void SendEnemy()
 	{
-		Debug.Log (enemyData.wait);
+		//Debug.Log (enemyData.wait);
+
 		if(m_index >= m_enemyList.Count)
 		{
 			return;
 		}
-
+		//第一次刷新敌人，初始化
+		//Debug.Log (m_index);
+		//Debug.Log (m_timer);
 		if(m_index == 0 && m_timer == 0)
 		{
 			enemyData = (SpawnData)m_enemyList[m_index];
 			//SpawnData data = (SpawnData)m_enemyList[m_index];
 			m_timer = enemyData.wait;
+			GameControl.instance.EnemyWave = enemyData.wave;
 
+			//Debug.Log(enemyData.wait);
+
+			//Debug.Log(enemyData.wait);
 		}
-		//string eneName;
-		//eneName = enemyData.enemyName;
-		GameObject enemyObj = GameObject.Find(enemyData.enemyName);
-		string spawnName;
-		spawnName = "EnemySpawner" + enemyData.level;
-		GameObject obj = GameObject.Find(spawnName);
-		//满足延迟时间刷新下一个敌人
-		m_timer = m_timer - Time.deltaTime;
+
+
+		if(enemyData.wave > GameControl.instance.EnemyWave && GameControl.instance.EnemyLive > 0)
+		{
+			return;
+			
+		}
+		else if(enemyData.wave > GameControl.instance.EnemyWave && GameControl.instance.EnemyLive == 0)
+		{
+			GameControl.instance.EnemyWave++;
+		}
+
+		//不满足延迟时间则返回
+
+		//Debug.Log (m_timer);
+		m_timer = m_timer - Time.deltaTime ;
+		//m_timer = m_timer - 0.02f;
 		if(m_timer > 0)
 		{
 			return;
 		}
-		Instantiate(enemyObj, obj.transform.position, Quaternion.identity);
+
+		//满足延迟时间刷新下一个敌人
+
+		eneName = enemyData.enemyName;
+
+		enemyObj =  Instantiate(Resources.Load(eneName,typeof(GameObject))) as GameObject;
+		string spawnName;
+		spawnName = "EnemySpawner" + enemyData.level;
+		Debug.Log (spawnName);
+		GameObject obj = GameObject.Find(spawnName);
+
+
+		//tep = Time.deltaTime;
+		//m_timer = m_timer - (1.0f * Time.deltaTime);
+		enemyObj.transform.position = obj.transform.position;
+		//Instantiate(enemyObj, obj.transform.position, Quaternion.identity);
+		GameControl.instance.EnemyLive++;
 		m_index++;
 		if(m_index >= m_enemyList.Count)
 		{
@@ -121,6 +164,17 @@ public class EnemySpawner : MonoBehaviour
 		}
 		enemyData = (SpawnData)m_enemyList[m_index];
 		m_timer = enemyData.wait;
+
+
+
+
+
+
+		//GameControl.instance.EnemyWave = enemyData.wave;
+		//Debug.Log (m_timer);
+
+
+
 
 		//int i;
 		//i = Random.Range(1, 6);

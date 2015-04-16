@@ -20,8 +20,8 @@ public class Ball : MonoBehaviour {
 		{
 			overText.text = "Game Over";
 			overText.fontSize = 64;
-			Instantiate(overText, new Vector3(1,2,0), Quaternion.identity);
-			GamePause ();
+			//Instantiate(overText, new Vector3(1,2,0), Quaternion.identity);
+			//GamePause ();
 		}
 		
 		

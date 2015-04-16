@@ -92,6 +92,7 @@ public class Enemy : MonoBehaviour
     void DeadCompleteDelegate(tk2dSpriteAnimator sprite, tk2dSpriteAnimationClip clip)
     {
         _state = EnemyStateEnum.Dead;
+		GameControl.instance.EnemyLive--;
         Destroy(gameObject);
  
     }

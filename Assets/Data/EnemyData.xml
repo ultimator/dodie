@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ROOT>
-	<table wave="1" enemyname="enemy" level="1" wait="1"/>
-	<table wave="1" enemyname="enemy" level="2" wait="1"/>
-	<table wave="2" enemyname="enemy" level="3" wait="3"/>
-	<table wave="2" enemyname="enemy" level="4" wait="3"/>
-	<table wave="2" enemyname="enemy" level="5" wait="3"/>
+	<table wave="1" enemyname="Enemy" level="1" wait="1"/>
+	<table wave="1" enemyname="Enemy" level="2" wait="2"/>
+	<table wave="1" enemyname="Enemy" level="3" wait="3"/>
+	<table wave="1" enemyname="Enemy" level="4" wait="4"/>
+	<table wave="1" enemyname="Enemy" level="5" wait="5"/>
+	<table wave="2" enemyname="Enemy" level="5" wait="5"/>
+	<table wave="2" enemyname="Enemy" level="4" wait="4"/>
+	<table wave="2" enemyname="Enemy" level="3" wait="3"/>
+	<table wave="2" enemyname="Enemy" level="2" wait="2"/>
+	<table wave="2" enemyname="Enemy" level="1" wait="1"/>
 </ROOT>
